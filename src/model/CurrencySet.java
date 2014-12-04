@@ -1,21 +1,26 @@
 package model;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class CurrencySet {
 
     //ArrayList<> currencySet;
-    HashMap<String, Currency> currencySet = new HashMap<>();
+    ArrayList<Currency> currencyList = new ArrayList<>();
 
     public CurrencySet() {
     }
 
     public void add(Currency from) {
-        currencySet.put(from.getCode(), from);
+       // currencyList.put(from.getCode(), from);
+        currencyList.add(from);
+    }
+    
+    public Currency get (int index){
+        return this.currencyList.get(index);
     }
 
     public Currency[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.currencyList.toArray(new Currency[currencyList.size()]);
     }
 
 }
