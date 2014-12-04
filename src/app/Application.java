@@ -1,15 +1,16 @@
 package app;
 
+import console.MoneyDisplay;
 import control.ExchangeOperation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.CurrencySet;
-import swing.MoneyCalculatorFrame;
+import ui.swing.MoneyCalculatorFrame;
 
 public class Application {
 
     public static void main(String[] args) {
-        CurrencySet currencySet = new mockpersistance.CurrencySetLoader().load();
+        CurrencySet currencySet = new persistance.mock.CurrencySetLoader().load();
         // se crean con el mock especificamente
         MoneyCalculatorFrame frame = new MoneyCalculatorFrame(currencySet.toArray());
         // le llegan los currencies
@@ -18,9 +19,10 @@ public class Application {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new ExchangeOperation(frame.getExchangeDialog()).execute());
-                }
-        });
+                new ExchangeOperation(frame.getExchangeDialog(), new MoneyDisplay()).execute();
+            }
+        }
+        );
     }
-    
+
 }

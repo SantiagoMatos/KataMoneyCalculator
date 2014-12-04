@@ -11,11 +11,9 @@ public class ExchangeOperation {
     public ExchangeOperation(ExchangeDialog exchangeDialog, MoneyDisplay display) {
         this.exchangeDialog = exchangeDialog;
         this.display = display;
-        
     }
 
-
     public void execute() {
-        display.display(null); // ?????
+        display.display(exchangeDialog.getExchange().getMoney());
     }
 }
