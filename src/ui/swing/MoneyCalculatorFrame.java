@@ -12,6 +12,7 @@ import model.Currency;
 public class MoneyCalculatorFrame extends JFrame {
 
     private final Currency[] currencies;
+    private DialogPanel area;
     private ActionListener actionListener;
     private ExchangeDialogPanel exchangeDialog;
 
@@ -34,7 +35,8 @@ public class MoneyCalculatorFrame extends JFrame {
 
     private void createWidgets() {
         exchangeDialog = new ExchangeDialogPanel(currencies);
-        add(createExchangeDialog(), BorderLayout.WEST);
+        add(createTextDialog(), BorderLayout.CENTER);
+        add(createExchangeDialog(), BorderLayout.PAGE_START);
         add(createCalculateButton(), BorderLayout.SOUTH);
     }
 
@@ -53,6 +55,16 @@ public class MoneyCalculatorFrame extends JFrame {
             }
         });
         return button;
+    }
+
+    private Component createTextDialog() {
+        DialogPanel panel = new DialogPanel();
+        this.area = panel;
+        return panel;
+    }
+
+    public DialogPanel getArea() {
+        return area;
     }
 
 }

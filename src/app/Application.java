@@ -1,14 +1,15 @@
 package app;
 
 import console.CurrencyDisplay;
-import console.MoneyDisplay;
 import control.ExchangeOperation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.Currency;
 import model.CurrencySet;
 import model.ExchangeRate;
 import persistance.mock.CurrencySetLoader;
 import ui.swing.MoneyCalculatorFrame;
+import ui.swing.MoneyDisplay;
 
 public class Application {
 
@@ -20,9 +21,11 @@ public class Application {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                ExchangeRate exchangeRate = new ExchangeRate(frame.getExchangeDialog().getMoney().getCurrency(),
-                        frame.getExchangeDialog().getExchange().getCurrency(), 1.3);
-                ExchangeOperation operation = new ExchangeOperation(frame.getExchangeDialog(), new MoneyDisplay(), exchangeRate);
+                Currency in = frame.getExchangeDialog().getMoney().getCurrency();
+                Currency out = frame.getExchangeDialog().getExchange().getCurrency();
+                ExchangeRate exchangeRate = new ExchangeRate(in, out, 1.3);
+                ExchangeOperation operation = new ExchangeOperation(frame.getExchangeDialog(), new MoneyDisplay(frame), exchangeRate);
+                operation.execute();
             }
         }
         );
